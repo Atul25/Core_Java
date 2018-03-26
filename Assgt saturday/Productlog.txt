@@ -1,0 +1,17 @@
+package com.company.entities;
+import java.util.*;
+import java.sql.*;
+import java.sql.Date;
+
+public class ProductLog {
+
+	Product p = new Product(); 
+	
+	Date date;
+	String category; 
+	
+ 
+	
+	
+} 
+ 

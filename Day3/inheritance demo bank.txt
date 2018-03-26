@@ -1,0 +1,117 @@
+
+import java.util.*;
+
+class Account
+{
+	int accno;
+	int balance; 
+	
+	Scanner obj = new Scanner(System.in);
+	
+	void deposit()
+	{
+		System.out.println("Enter the balance");
+		balance = obj.nextInt();
+		
+		System.out.println("Enter the amount to be deposited");
+	    int deposit = obj.nextInt();
+		
+		balance=balance+deposit;
+		System.out.println("The balance is"+balance);
+	}
+	
+	void withdraw()
+	{
+		System.out.println("Enter the amount to be withdrawn");
+		int amt = obj.nextInt();
+		
+		if(amt > balance)
+		System.out.println("you do not have sufficient balance");
+		else
+		balance=balance-amt;   
+		
+		System.out.println("The balance is"+balance); 
+	}
+	
+}//end class Account
+
+
+class CorporateAccount extends Account
+{
+	 
+	String compname = "";
+	int noofemployees=0;
+	
+	void deposit()
+	{
+		super.deposit();
+	}
+	
+	void withdraw()
+	{
+		super.withdraw();
+	}
+
+}//end class CorporateAccount
+
+class PersonalAccount extends Account
+{
+	double minbalance=1000;
+	String custname = "";
+	
+
+	void deposit()
+	{
+		super.deposit();
+	}
+	
+	void withdraw()
+	{
+		System.out.println("Enter the amount to be withdrawn");
+		int amt = obj.nextInt();
+		
+		if((amt > balance) || (balance<minbalance)) 
+		System.out.println("you do not have sufficient balance");
+		else
+		balance=balance-amt; 
+		
+		System.out.println("The balance is"+balance);
+	}
+
+}//end class CorporateAccount
+
+
+public class Accountdetails {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner obj = new Scanner(System.in);
+		CorporateAccount ca = new CorporateAccount();
+		PersonalAccount  pa = new PersonalAccount();
+		
+		int ch;
+		
+		System.out.println("Enter the choice of operation 1.Corporate , 2.Personal");
+		ch=obj.nextInt(); 
+		
+		switch(ch)
+		{
+		case 1:ca.deposit();
+			   ca.withdraw(); 
+			   break;
+			   
+		case 2:pa.deposit();
+		   	   pa.withdraw(); 
+		   	   break;
+		   	   
+		default:break;
+			
+		}//end switch
+		
+	}//end main
+
+}//end public class second

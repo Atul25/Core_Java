@@ -1,0 +1,30 @@
+
+import java.util.ArrayList;
+
+public class Collection { 
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ArrayList obj = new ArrayList();
+		System.out.println(obj.isEmpty());
+		obj.add(1);
+		obj.add(3.221f);
+		obj.add(2.11);
+		obj.add("sample string");
+		obj.add(true);
+		obj.add(new Sample());
+		
+		System.out.println(obj.isEmpty());
+		System.out.println(obj.size());
+		System.out.println(obj.get(1));
+		obj.clear();
+		System.out.println(obj.size());
+		System.out.println(obj);
+		
+		}
+
+}

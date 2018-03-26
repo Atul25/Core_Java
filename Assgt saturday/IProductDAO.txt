@@ -1,0 +1,19 @@
+package com.company.DAO;
+
+import com.company.entities.Product;
+import com.company.exceptions.ProductException;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.*;
+
+public interface IProductDAO {
+	
+	public boolean addProduct(Product p) throws ProductException; 
+	public Product getProduct(int prodId) throws ProductException;
+	public List<Product> getProducts() throws ProductException;
+	public boolean updatePrice(int prodId,int updPrice) throws ProductException;               
+	
+} 
+  

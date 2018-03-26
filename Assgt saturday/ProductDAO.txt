@@ -1,0 +1,254 @@
+package com.company.DAO;
+import java.util.*;
+import java.sql.*;
+import java.util.*;
+import java.sql.*;
+import java.io.*;
+
+import com.company.entities.Product;
+import com.company.exceptions.ProductException;
+
+public class ProductDAO implements IProductDAO {    
+
+	Connection conn;  
+	public ProductDAO() throws ProductException
+	{
+		Properties obj = new Properties();
+		
+		try {
+			try {
+				obj.load(new FileInputStream("config.properties"));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				throw new ProductException("File not present");
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				
+			} 
+		
+			DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+			conn = DriverManager.getConnection(obj.getProperty("server"),obj.getProperty("user"),obj.getProperty("password"));
+		} catch (SQLException e) {
+			}
+		//Connection conn1 = DriverManager.getConnection(obj.getProperty("server"),obj.getProperty("user"),obj.getProperty("password"));
+	}  
+	 
+	public boolean addProduct(Product p) throws ProductException{ 
+		// TODO Auto-generated method stub
+		
+		boolean flag = false;
+		
+		Scanner sc = new Scanner(System.in); 
+		
+		PreparedStatement stmt; 
+		try {
+			    stmt = conn.prepareStatement("INSERT into PRODUCT_805698 values(?,?,?,?)");
+			
+			    stmt.setInt(1, p.getProdId());
+			//	stmt.setin
+				//System.out.println("Enter the product name to enter"); 
+				stmt.setString(2, p.getProdName());
+				
+				//System.out.println("Enter the product qty to enter");
+				stmt.setInt(3, p.getQtyavailable());
+				
+				//System.out.println("Enter the product price to enter");
+				stmt.setInt(4, p.getUnitPrice());
+				
+				int rowcount=stmt.executeUpdate();
+				if(rowcount>0)
+				{flag=true; 
+				CallableStatement stmt2 = conn.prepareCall("call productlog_654('INSERTED')");
+				stmt2.executeUpdate(); 
+				}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new ProductException("Please enter a new prod id");
+		}
+	
+		/*Statement stmt3 = conn.createStatement();
+		ResultSet rs = stmt3.executeQuery("Select prodId from product_805698");
+		rs.next();
+		
+		while(rs.next())
+		{
+			
+			if(rs.getInt(1)== p.getProdId())
+			{throw new ProductException("Please enter a new product id"); };
+			
+					// TODO Auto-generated catch block
+					
+				 
+		}*/
+		 
+		//System.out.println("Enter the product id to enter");
+		
+		
+		finally
+		{
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		}
+		}
+		
+		return flag;  
+	}//end add product
+	
+	
+	
+	@Override
+	public Product getProduct(int prodId) throws ProductException {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);    
+		
+		
+		boolean flag1=false;  
+		 
+		try
+			{	Statement stmt = conn.createStatement();
+				ResultSet rs1 = stmt.executeQuery("SELECT prodid FROM PRODUCT_805698 where prodid = prodId"); 
+				
+				while(rs1.next()) 
+				
+				{
+					if(rs1.getInt("PRODID")==prodId)
+					{
+					flag1 = true;
+					break;
+				    }
+					
+				}//end while
+			
+				if(flag1 == false)  
+				throw new ProductException("prod id does not exist");
+			
+			}catch (SQLException e) {  
+				// TODO Auto-generated catch block
+				
+				 
+			}	  
+	  
+		Product p2 = new Product();
+		Statement stmt1;
+		
+		ResultSet rs;
+		try {stmt1 = conn.createStatement();
+			rs = stmt1.executeQuery("SELECT * FROM PRODUCT_805698");
+			while(rs.next())
+			{
+				if(rs.getInt("PRODID")==prodId)
+				{
+					p2.setProdId(rs.getInt("PRODID"));
+					p2.setProdName(rs.getString("PRODNAME"));
+					p2.setQtyavailable(rs.getInt("QTYAVAILABLE"));
+					p2.setUnitPrice(rs.getInt("UNITPRICE"));
+				}
+
+			}  
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		finally
+		{
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		}
+		
+		}
+		return p2; 
+		}
+
+	@Override
+	public List<Product> getProducts() throws ProductException {
+		// TODO Auto-generated method stub 
+		Scanner sc = new Scanner(System.in);
+		List<Product>productList1=new ArrayList<Product>();
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM PRODUCT_805698");  
+			
+			
+			
+			while(rs.next())
+			{		Product p2 = new Product();	
+					p2.setProdId(rs.getInt(1)); 
+					p2.setProdName(rs.getString(2));
+					p2.setQtyavailable(rs.getInt(3)); 
+					p2.setUnitPrice(rs.getInt(4));  
+					
+					productList1.add(p2); 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		}
+		
+		finally
+		{
+		try {
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		}
+		}
+		return productList1;
+	} 
+
+	@Override
+	public boolean updatePrice(int prodId,int updPrice) throws ProductException { 
+		// TODO Auto-generated method stub 
+		
+		boolean flag = false;
+		
+		Scanner sc = new Scanner(System.in);
+		Product p3 = new Product(); 
+		
+		PreparedStatement update_stmt;
+		try {
+			update_stmt = conn.prepareStatement("update PRODUCT_805698 set unitprice = (?) where prodid = (?) ");
+			update_stmt.setInt(1,updPrice);
+			update_stmt.setInt(2,prodId); 
+			
+			int rowcount=update_stmt.executeUpdate(); 
+			if(rowcount>0)
+			{
+			flag = true;
+			
+			CallableStatement stmt2 = conn.prepareCall("call productlog_654('UPDATED')");
+			stmt2.executeUpdate();  
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+		
+		}
+		finally
+		{
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			
+		} 
+		}
+		
+		return flag;  
+
+		
+	}   
+	
+}//class ProductDAO ends
+

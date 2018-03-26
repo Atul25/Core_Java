@@ -1,0 +1,20 @@
+package com.jdbc;
+import java.sql.*;
+
+public class First { 
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+   
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@10.212.74.18:1521:testDB","fbp22","fbp22#456");
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM employee"); 
+		while(rs.next())
+			System.out.println(rs.getInt("empId")+" "+rs.getString("empName")+" "+rs.getInt("empSalary"));
+	} 
+
+} 

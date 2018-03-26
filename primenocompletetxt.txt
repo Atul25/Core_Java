@@ -1,0 +1,38 @@
+
+import java.util.*;
+
+class Test5{ 
+	
+	boolean checkprime(int number) 
+	{
+			int flag = 1,i;
+			
+			for(i=2;i<(number/2);i++)
+			 if((number%i) == 0) 
+			 {
+				 return false;
+				 //break;
+			 }
+		   return true; 
+	}
+	
+
+    public static void main(String args[]) {
+
+	Test5 t=new Test5();
+	
+	Scanner obj = new Scanner(System.in);
+	
+	System.out.println("Enter the number to be checked:");
+	
+	int num = obj.nextInt();
+	
+	boolean result = t.checkprime(num); 
+	
+	if(result == true)
+	System.out.println("It is a prime no");
+	else
+	System.out.println("It is not a prime no");	
+		
+}} 
+

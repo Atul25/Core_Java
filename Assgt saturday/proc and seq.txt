@@ -1,0 +1,11 @@
+create or replace Procedure productlog_654(logcategory in productlog_805698.category%type)is
+
+    begin
+
+ insert into productlog values(AUTOGENERATE .nextval,sysdate,logcategory); 
+
+ end;
+
+CREATE SEQUENCE AUTOGENERATE START WITH 1 MAXVALUE 100 INCREMENT BY 1 NOCYCLE 
+
+select * from productlog

@@ -1,0 +1,76 @@
+
+import java.util.*;
+
+class Sportsman
+{
+	Scanner obj = new Scanner(System.in);
+	
+	String play()
+	{
+		return("The game that is played is a general sport");	
+	}
+	
+}//end class Sportsman
+
+class Cricketer extends Sportsman
+{
+	String play()
+	{
+		return("The game that is played is cricket");
+	}
+	
+}//end class cricket
+
+class Footballer extends Sportsman
+{
+	String play()
+	{
+		return("The game that is played is football");
+	}
+	
+}//end class football
+
+
+public class Sport {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	
+	Scanner obj = new Scanner(System.in);
+	
+	Sportsman s =  new Sportsman();
+	Cricketer c =  new Cricketer();
+	Footballer f = new Footballer();
+	
+	String sportresult;
+	String cricketresult;
+	String footballresult;
+	
+	int ch;	
+	System.out.println("Enter your choice of sport 1.Sport 2.Cricket 3.Football");
+	ch=obj.nextInt();
+	
+	
+	switch(ch)
+	{
+	case 1:sportresult=s.play();
+		   System.out.println(sportresult);
+		   break;
+	
+	case 2:cricketresult=c.play();
+	   	   System.out.println(cricketresult);
+	   	   break;	
+	 
+	case 3:footballresult=f.play();
+	   	   System.out.println(footballresult);
+	   	   break;	
+	}//end switch
+		
+	
+	
+	}//end main
+
+}//end public class second

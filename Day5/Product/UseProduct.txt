@@ -1,0 +1,73 @@
+package com.company.pl;
+
+import java.util.*;
+
+import com.company.dto.Product;
+import com.company.bo.ProductBO;;
+
+
+public class UseProduct {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	Scanner s = new Scanner(System.in);
+	ProductBO pb = new ProductBO();
+	
+	
+	int ch;
+	do
+	{
+	System.out.println("Enter 1.add product  2.deleteproduct   3.iterate product");
+	
+	ch = s.nextInt();
+	
+	switch(ch)
+	
+	{
+	case 1: Product p = new Product();
+	
+			System.out.println("Enter the product id");
+			p.setProductId(s.nextInt());
+			
+			System.out.println("Enter the product name");
+			p.setProductName(s.next());
+			
+			System.out.println("Enter the product price");
+			p.setProductPrice(s.nextInt());
+			
+			pb.addProduct(p); 
+			System.out.println("Added successfully"); 
+			break;
+		   
+    case 2:
+    		System.out.println("Enter the product id  you want to delete");
+    		boolean result = pb.deleteProduct(s.nextInt()); 
+    		if(result == true)
+    	   System.out.println("Deleted successfully!"); 
+    	   else
+    	   System.out.println("Not deleted");
+    	   break; 
+    	   
+    case 3:List<Product> productlist1 = new ArrayList<Product>();
+    	   productlist1=pb.getAllProduct();
+    	   Iterator<Product> obj1 = productlist1.iterator(); 
+    	    while(obj1.hasNext()) 
+    	    System.out.println((Product)obj1.next());
+    	   break;
+    		
+    default:break; 
+	
+	
+	}//end switch
+	
+	}while(ch!=0);
+	
+	
+	
+	}
+
+}

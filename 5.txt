@@ -1,0 +1,36 @@
+
+import java.util.*;
+
+/*class Employee
+{
+	int empID;
+	String empName;
+}*/
+
+public class Demo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	System.out.println("Welcome!");
+	
+	int a=6,b=7;
+	
+	System.out.println(a+"  "+b);
+	
+	a=b;
+	
+	System.out.println(a+"  "+b);
+	
+	b=9;
+	a=b;
+	
+	System.out.println(a+"  "+b);
+	
+	
+	
+	}
+}

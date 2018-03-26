@@ -1,0 +1,21 @@
+package com.jdbc;
+
+import java.sql.*;
+
+public class Second {
+
+	/**
+	 * @param args 
+	 */
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@10.212.74.18:1521:testDB","fbp22","fbp22#456");
+		Statement stmt = conn.createStatement();
+		
+		int rowCount=stmt.executeUpdate("INSERT into employee values(458,'vijay',18740)");  
+		System.out.println(rowCount+"rows inserted!!");
+	}
+
+}

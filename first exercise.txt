@@ -1,0 +1,112 @@
+1. class Test {
+
+  public static void main(String args[]) {
+
+    for (int i = 0; i<5 ;i++) {
+
+      switch(i) {
+
+        case 0: System.out.print("v ");break;
+
+        case 1: System.out.print("w ");
+
+        case 2: System.out.print("x ");break;
+
+        case 3: System.out.print("y ");
+
+        case 4: System.out.print("z ");break;
+
+        default: System.out.print("d ");
+
+}}}}
+
+ 
+
+
+
+ 
+
+2. class Test {
+
+  public static void main(String[] args) {
+
+    boolean b = true;
+
+    if (b = false) {System.out.print("A");
+
+    } else if (b) {System.out.print("B");
+
+    } else {System.out.print("C");}
+
+}}
+
+ 
+
+ 
+
+ 
+
+3. class Test{
+
+  public static void main(String args[]) {
+
+    int x = 6; int success = 0;
+
+    do  {
+
+      switch(x) {
+
+        case 0: System.out.print("0"); x += 5; break;
+
+        case 1: System.out.print("1"); x += 3; break;
+
+        case 2: System.out.print("2"); x += 1; break;
+
+        case 3: System.out.print("3"); success++; break;
+
+        case 4: System.out.print("4"); x -= 1; break;
+
+        case 5: System.out.print("5"); x -= 4; break;
+
+        case 6: System.out.print("6"); x -= 5; break;
+
+      }
+
+    } while ((x != 3) || (success < 2));
+
+}}
+
+ 
+
+4. Write programs for the following tasks:you must use functions for all the tasks
+
+ 
+
+a. find the greater of 2 numbers.
+
+b. find the greatest of 3 numbers.
+
+c. check if a number is prime.
+
+d. calculate factorial of a number.
+
+e. Create a class Product to store product information like id, name , rate and qty.
+
+write functions to 1. accept product details:
+
+validations:
+
+id cannot be <=0
+
+rate cannot be <=0 or more than 5000.
+
+qty cannot be <0,0 or more than 25
+
+name cannot be less than 3 characters in length.
+
+ 
+
+2. display product details
+
+ 
+

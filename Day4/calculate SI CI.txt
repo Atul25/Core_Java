@@ -1,0 +1,16 @@
+package com.company.calcpackage;
+import java.util.*;
+
+public class Calculator {
+	
+	public float calculateSI(int principal,float rate,int time)
+	{
+		return (principal*rate*time)/100;
+	} 
+	
+	public float calculateCI(int principal,float rate,int time)
+	{
+		return (float)(principal*Math.pow(rate/time,time));
+	}    
+ 
+}

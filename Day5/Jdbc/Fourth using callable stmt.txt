@@ -1,0 +1,32 @@
+companypackage com.jdbc;
+import java.sql.*;
+import java.util.Scanner;
+
+public class UseCallable {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) throws SQLException{
+		// TODO Auto-generated method stub
+
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@10.212.74.18:1521:testDB","fbp22","fbp22#456");
+		CallableStatement stmt = conn.prepareCall("call AddEmployee(?,?,?)");
+		Scanner sc = new Scanner(System.in); 
+		
+		System.out.println("Enter the employee id"); 
+		stmt.setInt(1, sc.nextInt());
+		
+		System.out.println("Enter the employee name");
+		stmt.setString(2, sc.next());
+		
+		System.out.println("Enter the employee salary");
+		stmt.setInt(3, sc.nextInt());
+		
+		int rowCount = stmt.executeUpdate();
+		System.out.println(rowCount+"rows inserted");   
+		
+	}
+
+}

@@ -1,0 +1,87 @@
+
+import java.util.*;
+
+class Product
+{
+	int productID;
+	String productName;
+	int productrate;
+	int productqty;
+	
+	
+	void acceptProductinfo()
+	{
+		Scanner obj = new Scanner(System.in);
+		
+		while(true)
+		{
+			System.out.println("Enter the product id");
+			productID=obj.nextInt(); 
+			if(productID <= 0)
+				System.out.println("Enter a valid product id");
+			else
+				break;
+		}
+		
+		
+		while(true)
+		{
+			System.out.println("Enter the product name");
+			productName=obj.next(); 
+			
+			if(productName.length()<3)
+				System.out.println("Enter a valid product name");
+			else
+				break;
+		} 
+		
+		while(true)
+		{	
+			System.out.println("Enter the product rate");
+			productrate=obj.nextInt();
+			if(productrate <= 0 || productrate>5000)
+				System.out.println("Enter a valid productrate");
+			else
+				break;
+		} 
+		
+		while(true)
+		{
+			System.out.println("Enter the product quantity");
+			productqty=obj.nextInt();
+			if(productqty <= 0 || productqty > 25) 
+				System.out.println("Enter a valid productqty");
+			else
+				break;
+		} 
+		
+		
+	} //end acceptProductinfo 
+	
+	void displayProductinfo()
+	{
+		System.out.println("Product id  "+productID);
+		System.out.println("Product name  "+productName);
+		System.out.println("Product rate "+productrate);
+		System.out.println("Product quantity "+productqty);
+		
+	}//end displayStudentinfo  
+	
+}
+
+public class Test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	System.out.println("Welcome!");
+	
+	Product p = new Product();
+	p.acceptProductinfo();
+	p.displayProductinfo();  
+	
+	} 
+}

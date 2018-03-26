@@ -1,0 +1,71 @@
+
+import java.util.*;
+
+class Student
+{
+	int studentID;
+	String studentName;
+	int mark1;
+	int mark2;
+	int total;
+	
+	void acceptStudentinfo()
+	{
+		Scanner obj = new Scanner(System.in);
+		
+		while(true)
+		{
+			System.out.println("Enter the student id");
+			studentID=obj.nextInt();
+			if(studentID<0)
+				System.out.println("Enter a valid student id");
+			else 
+				break; 
+		}
+		
+		
+		System.out.println("Enter the student name");
+		studentName=obj.next(); 
+		
+		System.out.println("Enter the student's first subject marks");
+		mark1=obj.nextInt();
+		
+		System.out.println("Enter the student's second subject marks");
+		mark2=obj.nextInt();
+		
+		calculate();
+		
+		
+	}//end acceptStudentinfo
+	
+	void calculate()
+	{
+		total = mark1 + mark2;
+	}
+	
+	void displayStudentinfo()
+	{
+		System.out.println("Student id  "+studentID);
+		System.out.println("Student name  "+studentName);
+		System.out.println("Student total  "+total);
+		
+	}//end displayStudentinfo 
+	
+}
+
+public class Demo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	System.out.println("Welcome!");
+	
+	Student s = new Student();
+	s.acceptStudentinfo();
+	s.displayStudentinfo(); 
+	
+	} 
+}

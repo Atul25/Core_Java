@@ -1,0 +1,107 @@
+
+import java.util.*;
+
+class Employee
+{
+ private static int empid = 0;
+ private String empname;
+ private int empsal; 
+
+Scanner obj = new Scanner(System.in);
+
+int getNextId()
+{
+return ++empid;
+}//end fn getnextid
+
+void set(String nm,int sal)
+{
+this.empname=nm;
+this.empsal=sal;
+this.empid=getNextId(); 
+}
+Employee get()
+{
+return this;
+}
+
+void showEmployee()
+
+{
+System.out.println("Name:"+this.empname);
+System.out.println("ID:"+this.empid);
+System.out.println("Salary:"+this.empsal);
+} 
+
+}//end class employee 
+
+class EmpService
+{
+	Employee emp = new Employee();
+	Scanner obj = new Scanner(System.in);
+	
+	boolean AddEmployee(Employee emp)
+	{
+		String Name;
+		int salary;
+		boolean result = true;
+		
+		System.out.println("Enter the emp name");
+		Name = obj.next();
+		
+		System.out.println("Enter the emp salary");
+		salary = obj.nextInt();
+		
+		emp.set(Name,salary);
+		return result;
+	}
+	
+	Employee getEmployee(Employee emp)
+	{
+		return emp; 
+	}
+	
+}//end class empservice
+
+
+
+public class EmpTest {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	Scanner obj = new Scanner(System.in);
+	
+	EmpService empser = new EmpService();
+	Employee emp = new Employee();
+	Employee getemp= new Employee();
+	
+	int ch;
+	System.out.println("Enter your choice 1.addemp  2.getemp");
+	ch=obj.nextInt();
+	
+	
+	if(empser.AddEmployee(emp))
+	
+	 getemp=empser.getEmployee(emp);
+	getemp.showEmployee();
+		
+	/*switch(ch)
+	{
+	case 1:empser.AddEmployee(emp);
+		   break;
+			
+	case 2:getemp=empser.getEmployee(); 
+			getemp.showEmployee();
+			break;
+	
+    default:break;
+	
+	}//end switch*/ 
+	
+	}//end main
+
+}//end class EmpTest

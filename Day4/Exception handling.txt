@@ -1,0 +1,45 @@
+import java.util.*;
+
+
+public class Sample {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner obj = new Scanner(System.in);
+		int a;
+		int b;
+		int c=0;
+		
+		boolean flag = false;
+		try
+		{
+		a = obj.nextInt();
+		b = obj.nextInt();
+		c=a/b;
+		
+		}
+		
+		catch(ArithmeticException ex)
+		{
+			/*System.out.println(ex.getMessage());
+			ex.printStackTrace();*/
+			System.out.println("Please enter a non-zero denominator");
+			flag=true;
+		}
+		
+		catch(InputMismatchException ex)
+		{
+			System.out.println("enter only numbers");
+			flag=true;
+		}
+		
+		if(flag==false)
+		System.out.println(c); 
+	
+	}
+
+}

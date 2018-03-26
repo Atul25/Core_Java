@@ -1,0 +1,33 @@
+package com.company.testcalc;
+
+import java.util.Scanner;
+
+import com.company.calcpackage.Calculator;
+
+public class TestCalculator {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub 
+
+	Calculator calc = new Calculator();
+	
+	Scanner obj = new Scanner(System.in);
+	
+	System.out.println("Enter the principal amt");
+	int p = obj.nextInt();
+	System.out.println("Enter the period in years");
+	int n = obj.nextInt();
+	System.out.println("Enter the rate of interest in %");
+	float r = obj.nextFloat();
+	
+	float resultsi=calc.calculateSI(p,r,n);
+	float resultci=calc.calculateCI(p,r,n);
+	System.out.println("The simple interest is Rs "+resultsi);
+	System.out.println("The compound interest is Rs "+resultci);
+	
+	} 
+
+}

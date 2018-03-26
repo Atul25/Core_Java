@@ -1,0 +1,92 @@
+package com.company.Service;
+import com.company.exceptions.ProductException; 
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.*;
+
+import com.company.DAO.ProductDAO;
+import com.company.entities.Product;  
+import com.company.exceptions.ProductException;
+
+public class ProductService implements IProductService{
+
+	List<Product> productlist;   
+	ProductDAO pdao;
+	
+	public ProductService() throws ProductException {
+		pdao = new ProductDAO();    
+		
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+	/*public boolean validateProduct(Product p) throws ProductException {
+		// TODO Auto-generated method stub
+		boolean flag=true;
+		if((p.getProdId()) == )
+		{
+			flag = false;  
+			throw new ProductException("Please enter a non-zero product id"); 
+		}
+		
+		return flag; 
+	} */
+
+	@Override
+	public boolean addProduct(Product p) throws ProductException{  
+		// TODO Auto-generated method stub
+		boolean flag = false;     
+		 
+		
+			pdao = new ProductDAO();    
+			flag=pdao.addProduct(p); 
+		
+		return flag;  
+		}
+
+	@Override
+	public Product getProduct(int prodId) throws ProductException {
+		// TODO Auto-generated method stub
+		Product p1 = new Product();   
+		
+			pdao = new ProductDAO();
+		
+			p1 = pdao.getProduct(prodId);  
+		
+			// TODO Auto-generated catch block
+			
+		
+		return p1;   
+		
+	}
+	@Override
+	public List<Product> getProducts() throws ProductException { 
+		// TODO Auto-generated method stub 
+		
+		
+		
+		pdao = new ProductDAO();
+		
+		productlist= new ArrayList<Product>();
+		
+		productlist=pdao.getProducts(); 
+		return productlist;  
+	}
+
+	@Override
+	public boolean updatePrice(int prodId,int updPrice) throws ProductException {
+		// TODO Auto-generated method stub
+		boolean flag = false;
+		
+		
+		pdao = new ProductDAO(); 
+		
+		flag = pdao.updatePrice(prodId,updPrice);   
+		return flag;   
+		
+		} 
+} 

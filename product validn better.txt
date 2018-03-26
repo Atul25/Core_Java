@@ -1,0 +1,80 @@
+
+import java.util.*;
+
+class Prod
+{
+	 int productID;
+	 String productName;
+	 int productrate; 
+	 int productqty;
+}
+	
+
+public class Productinfo
+
+{
+    Prod p=new Prod();  
+    Scanner obj = new Scanner(System.in);
+	void acceptProductinfo()
+	{
+		
+		
+		while(true)
+		{
+			System.out.println("Enter the product id");
+			p.productID=obj.nextInt(); 
+			if(p.productID <= 0)
+				System.out.println("Enter a valid product id");
+			else
+				break;
+		}
+		
+		
+		while(true)
+		{
+			System.out.println("Enter the product name");
+			p.productName=obj.next(); 
+			
+			if(p.productName.length()<3)
+				System.out.println("Enter a valid product name");
+			else
+				break;
+		} 
+		
+		while(true)
+		{	
+			System.out.println("Enter the product rate");
+			p.productrate=obj.nextInt();
+			if(p.productrate <= 0 || p.productrate>5000)
+				System.out.println("Enter a valid productrate");
+			else
+				break;
+		} 
+		
+		while(true)
+		{
+			System.out.println("Enter the product quantity");
+			p.productqty=obj.nextInt();
+			if(p.productqty <= 0 || p.productqty > 25) 
+				System.out.println("Enter a valid productqty");
+			else
+				break;
+		} 
+		
+		
+	} //end acceptProductinfo 
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	System.out.println("Welcome!");
+	
+	
+	Productinfo pinfo=new Productinfo();
+	pinfo.acceptProductinfo(); 
+	
+	
+}}

@@ -1,0 +1,29 @@
+package com.company.assgt2;
+
+public class Details {
+
+String name;
+String phoneno;
+String email;
+public String getName() {
+	return name;
+}
+public void setName(String name) { 
+	this.name = name;
+}
+public String getPhoneno() {
+	return phoneno;
+}
+public void setPhoneno(String phoneno) {
+	this.phoneno = phoneno;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+
+
+
+}

@@ -1,0 +1,40 @@
+package com.company.bo;
+
+import java.util.*;
+
+import com.company.dto.Product;
+
+public class ProductBO {
+
+	List<Product> productlist = new ArrayList<Product>();
+	
+	public void addProduct(Product product)
+	{
+		productlist.add(product);
+	}
+	
+	public boolean deleteProduct(int productId) 
+	{
+		boolean flag=false;
+		Iterator obj1 = productlist.iterator();
+		while(obj1.hasNext())
+		{
+			Product p = (Product)obj1.next();
+			
+			if(p.getProductId() == productId)
+				{
+				obj1.remove(); 
+				flag=true;
+				}
+			
+		} 
+		return flag;  
+		
+	}
+	
+	public List<Product> getAllProduct()
+	{
+		return productlist;
+	}
+}
+

@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Test{
+	
+	int factorial(int number)
+	{
+			int fact = 1;
+			
+			for(int i=1;i<=number;i++)
+			fact=fact*i;
+			
+			return fact; 
+	}
+	
+
+    public static void main(String args[]) {
+
+	Test t=new Test();
+	
+	  
+	Scanner obj = new Scanner(System.in);
+	
+	System.out.println("Enter the number whose factorial is desired:");
+	
+	int num = obj.nextInt();
+	
+	int result = t.factorial(num); 
+		
+	System.out.println("The factorial is: "+result);
+	
+}} 

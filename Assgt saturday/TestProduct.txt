@@ -1,0 +1,136 @@
+package com.company.PL;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.*;
+
+import com.company.Service.ProductService;
+import com.company.entities.Product; 
+import com.company.exceptions.ProductException;
+
+public class TestProduct {        
+
+	/**
+	 * @param args
+	 * @throws SQLException 
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 */
+	public static void main(String[] args){
+		// TODO Auto-generated method stub
+
+		Scanner s = new Scanner(System.in); 
+		
+		ProductService ps=null;
+		try {
+			ps = new ProductService();
+		} catch (ProductException e2) {
+			// TODO Auto-generated catch block
+		System.out.println(e2.getMessage());
+		}      
+		int ch; 
+		
+		do    
+		{	
+		System.out.println("Enter your option  1.Enter a new product    2.Update product price    3.Display all products    4.Search a product");
+		ch = s.nextInt(); 
+		switch(ch)
+		{
+		case 1 : Product p = new Product(); 
+				 boolean result2 = true;
+				 boolean result = true;;
+				
+				 do 
+				 {System.out.println("Enter the product id"); 
+			     p.setProdId(s.nextInt());
+			     
+			     System.out.println("Enter the product name");
+			     p.setProdName(s.next());
+			     System.out.println("Enter the qty available");
+			     p.setQtyavailable(s.nextInt());
+			     System.out.println("Enter the product unit price");
+			     p.setUnitPrice(s.nextInt());
+			     
+			    
+			     try {
+					  result = ps.addProduct(p); 
+					} catch (ProductException e) {
+						System.out.println(e.getMessage()); 
+					} 
+					
+					
+					
+					 
+				 /*	try {
+						result2	= ps.validateProduct(p);
+					} catch (ProductException e) {
+						// TODO Auto-generated catch block
+						System.out.println(e.getMessage()); 
+						result2=false;
+					} */
+				 } while(result2 == false);	  
+					
+			    
+			     if(result == true)
+			     System.out.println("Added successfully!");  
+			     break;   
+			     
+		 
+		case 2 : 
+				 System.out.println("Enter the product id and price of the product whose price is to be updated");
+				 int pid1 = s.nextInt();
+				 int price = s.nextInt(); 
+			boolean result1=false;
+			try {
+				result1 = ps.updatePrice(pid1,price);
+			} catch (ProductException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage());
+			}
+				 if(result1 == true)
+					 System.out.println("Price updated"); 
+				
+		
+				 break;  
+				  
+		case 3 : 
+			 	 List<Product> productlist1 = new ArrayList<Product>();
+			try {
+				productlist1 = ps.getProducts();
+			} catch (ProductException e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1.getMessage()); 
+			} 
+			  	 
+			  	 Iterator<Product> obj1 = productlist1.iterator(); 
+	    	     while(obj1.hasNext()) 
+	    	     System.out.println((Product)obj1.next());   
+	    	     break; 
+	    	     
+		 case 4 : Product p1 = new Product();     
+		 		 
+					 	 	  
+				  System.out.println("Enter the product id to be searched"); 
+				  int pid = s.nextInt();     
+							 
+			 boolean flag1 = true; 	     
+			do
+			{
+			try {
+				p1=ps.getProduct(pid);
+			} catch (ProductException e) { 
+				// TODO Auto-generated catch block
+				flag1=false;
+				System.out.println(e.getMessage());    
+			}
+			}while (flag1 == true ); 		 
+						// TODO Auto-generated catch block
+						
+				  System.out.println(p1);            
+		 		  break;   
+		 
+		 }//end switch
+		} while(ch!=0);     
+	}
+
+}
